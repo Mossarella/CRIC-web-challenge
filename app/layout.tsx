@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Lato } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer/Footer";
+import Aside from "@/components/Aside/Aside";
+import Breadcrumb from "@/components/Main/Breadcrumb/Breadcrumb";
+import joiner from "classnames";
+import { inter, lato } from "@/Fonts/FontProperty";
 
 export const metadata: Metadata = {
   title: "Web dev challenge",
   description: "This is getting exciting",
   icons: {
-    icon: "images/favicon.svg",
+    icon: "images/MainLogo.svg",
   },
   creator: "Mossarelladev",
   authors: { name: "Mossarelladev", url: "https://mossarelladev.com" },
@@ -71,9 +75,25 @@ export default function RootLayout({
           content="https://mossarelladev.com/images/cover.png"
         /> */}
       </head>
-      <body className={inter.className}>
-        <main></main>
-        {children}
+      <body
+        className={joiner(
+          inter.variable,
+          lato.variable,
+          "maxSection bg-[#f5f5f5]"
+        )}
+      >
+        <nav>
+          <Nav></Nav>
+        </nav>
+        <section className="flex flex-col sm:flex-col md:flex-col lg:flex-row  min-h-[calc(100vh-108px)]">
+          <aside>
+            <Aside></Aside>
+          </aside>
+          <main className="flex flex-col w-full">{children}</main>
+        </section>
+        <footer>
+          <Footer></Footer>
+        </footer>
       </body>
     </html>
   );

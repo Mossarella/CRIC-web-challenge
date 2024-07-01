@@ -3,9 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --white: #ffffff;
+  --primary: #009540;
+  --grey: #f5f5f5;
+}
+
+/* override */
+.breadcrumbs > ul > li + ::before,
+.breadcrumbs > ol > li + ::before {
+  content: "/";
+  margin-left: 0.5rem;
+  margin-right: 0.75rem;
+  display: block;
+  width: 0.375rem;
+  height: auto;
+
+  --tw-rotate: 0deg;
+  transform: none;
+  opacity: 0.3;
+  border-top: none;
+  border-right: none;
+  background-color: transparent;
+}
+.tabs-bordered > .tab {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+.drawer-side {
+  z-index: 99;
+}
+
+.drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
+  background-color: #0006;
+}
+.tab:is(.tab-active, [aria-selected="true"]):not(.tab-disabled):not([disabled]),
+.tab:is(input:checked) {
+  border-color: var(--primary);
 }
 
 @layer base {
@@ -23,15 +55,70 @@
     -ms-user-select: none;
   }
 
-  body {
-  }
   .maxSection {
     max-width: 1800px;
+    width: 100%;
   }
+
+  .dropdown-toggle:focus {
+    box-shadow: none !important;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus,
+  button:focus {
+    outline: none;
+  }
+  textarea {
+    resize: none;
+  }
+  .select {
+    font-family: var(--font-lato);
+  }
+
+  html {
+    scrollbar-width: thin;
+  }
+  /* ::-webkit-scrollbar:horizontal {
+    height: 8px;
+  } */
 }
 
 @layer components {
 }
 
 @layer utilities {
+  .greenFilter,
+  .greenFilterImg > img {
+    filter: invert(40%) sepia(87%) saturate(5161%) hue-rotate(137deg)
+      brightness(94%) contrast(101%);
+
+    /* -webkit-transition: 150ms -webkit-filter linear;
+    -moz-transition: 150s -moz-filter linear;
+    -moz-transition: 150ms filter linear;
+    -ms-transition: 150ms -ms-filter linear;
+    -o-transition: 150ms -o-filter linear;
+    transition: 150ms filter linear, 150ms -webkit-filter linear; */
+  }
+
+  .whiteFilter > img {
+    filter: invert(92%) sepia(93%) saturate(0%) hue-rotate(202deg)
+      brightness(106%) contrast(106%);
+
+    /* -webkit-transition: 150ms -webkit-filter linear;
+    -moz-transition: 150s -moz-filter linear;
+    -moz-transition: 150ms filter linear;
+    -ms-transition: 150ms -ms-filter linear;
+    -o-transition: 150ms -o-filter linear;
+    transition: 150ms filter linear, 150ms -webkit-filter linear; */
+  }
+  .transparentFont {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  .smooth {
+    transition: all 150ms cubic-bezier(0.1, 0.7, 0.6, 0.9);
+  }
+  .customScrollBar {
+    scrollbar-width: thin;
+  }
 }
