@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Lato } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Nav from "@/components/Nav/Nav";
+import Footer from "@/components/Footer/Footer";
+import Aside from "@/components/Aside/Aside";
+import Breadcrumb from "@/components/Main/Breadcrumb/Breadcrumb";
+import joiner from "classnames";
+import { inter, lato } from "@/Fonts/FontProperty";
+import { Suspense } from "react";
+import LoadingPage from "./loading";
 
 export const metadata: Metadata = {
   title: "Web dev challenge",
   description: "This is getting exciting",
   icons: {
-    icon: "images/favicon.svg",
+    icon: "images/MainLogo.svg",
   },
   creator: "Mossarelladev",
   authors: { name: "Mossarelladev", url: "https://mossarelladev.com" },
@@ -71,9 +77,32 @@ export default function RootLayout({
           content="https://mossarelladev.com/images/cover.png"
         /> */}
       </head>
-      <body className={inter.className}>
-        <main></main>
-        {children}
+      <body
+        className={joiner(
+          inter.variable,
+          lato.variable,
+          "maxSection bg-[#f5f5f5]"
+        )}
+      >
+        <nav>
+          <Nav></Nav>
+        </nav>
+        <section className="flex flex-col sm:flex-col md:flex-col lg:flex-row  min-h-[calc(100vh-108px)]">
+          <aside>
+            <Aside></Aside>
+          </aside>
+          <main className="flex flex-col w-full flex-1">
+            <div className=" relative bg-[var(--grey)] flex-1  p-6 flex flex-col gap-y-4 h-full shadow-inner smooth w-full">
+              <Suspense fallback={<LoadingPage />}>
+                <Breadcrumb></Breadcrumb>
+                {children}
+              </Suspense>
+            </div>
+          </main>
+        </section>
+        <footer>
+          <Footer></Footer>
+        </footer>
       </body>
     </html>
   );
