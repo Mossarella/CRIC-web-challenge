@@ -1,5 +1,5 @@
 export enum ESubjectType {
-  Employees = "Employees",
-  Faculty = "Faculty Staff",
-  Students = "Students",
+  EMPLOYEES = "Employees",
+  FACULTY = "Faculty Staff",
+  STUDENTS = "Students",
 }

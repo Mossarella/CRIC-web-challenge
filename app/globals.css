@@ -39,6 +39,19 @@
 .tab:is(input:checked) {
   border-color: var(--primary);
 }
+.rdt_TableCol_Sortable {
+  display: flex;
+  justify-content: space-between !important;
+}
+.desc.__rdt_custom_sort_icon__ {
+  transform: rotate(0deg) !important;
+}
+.asc.__rdt_custom_sort_icon__ {
+  transform: rotate(180deg) !important;
+}
+.sc-fzXfLS.kUIRpf span.__rdt_custom_sort_icon__ {
+  display: none !important;
+}
 
 @layer base {
   * {
@@ -78,6 +91,14 @@
 
   html {
     scrollbar-width: thin;
+    overflow-x: hidden;
+  }
+  button:disabled,
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    cursor: default !important;
+    pointer-events: all !important;
   }
   /* ::-webkit-scrollbar:horizontal {
     height: 8px;
@@ -120,5 +141,26 @@
   }
   .customScrollBar {
     scrollbar-width: thin;
+  }
+
+  .pushable {
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+
+  .shake {
+    animation: shake 300ms;
+  }
+  @keyframes shake {
+    25% {
+      transform: translateX(4px);
+    }
+    50% {
+      transform: translateX(-4px);
+    }
+    75% {
+      transform: translateX(4px);
+    }
   }
 }

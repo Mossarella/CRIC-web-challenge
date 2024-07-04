@@ -12,3 +12,27 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+//////////////////////////////////
+model IDataMapping{
+  id Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+   title String
+  desc String
+  department EDepartment
+  subjectType ESubjectType?
+}
+
+
+enum EDepartment {
+  HR
+  IT_IS
+  AD
+  MK
+}
+
+enum ESubjectType {
+  EMPLOYEES
+  FACULTY
+  STUDENTS
+}

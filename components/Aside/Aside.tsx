@@ -13,41 +13,41 @@ export default function Aside({}) {
       id: 1,
       text: "Data Mapping",
       icon: "/images/DataMapping.svg",
-      href: "/",
+      href: "/datamap",
     },
     {
       id: 2,
       text: "Governance Document",
       icon: "/images/Governance.svg",
-      href: "/",
+      href: "/governance",
     },
     {
       id: 3,
       text: "Employee Awareness",
       icon: "/images/Employee.svg",
-      href: "/",
+      href: "/employee",
     },
     {
       id: 4,
       text: "Data Processors",
       icon: "/images/Data.svg",
-      href: "/",
+      href: "/dataprocess",
     },
     {
       id: 5,
       text: "Subject Access Request",
       icon: "/images/Subject.svg",
-      href: "/",
+      href: "/subjectaccess",
     },
     {
       id: 6,
-      text: "Data breach register",
+      text: "Data Breach Register",
       icon: "/images/DataBreach.svg",
-      href: "/",
+      href: "/databreach",
     },
   ];
 
-  const [activeNavSide, setActiveNavSide] = useState<number>(0);
+  const [activeNavSide, setActiveNavSide] = useState<number>(1);
 
   useEffect(() => {
     updateMedia();
@@ -68,7 +68,7 @@ export default function Aside({}) {
   return (
     <div
       className={joiner(
-        "bg-[var(--grey)] pt-0 sm:pt-0 md:pt-0 lg:pt-6 h-[64px] sm:h-[64px] md:h-[64px] lg:h-full items-center sm:items-center md:items-center lg:items-stretch overflow-x-scroll sm:overflow-x-scroll md:overflow-x-scroll lg:overflow-x-hidden customScrollBar gap-x-4 sm:gap-x-4 md:gap-x-4 lg:gap-x-0  px-6 relative  smooth z-[1] flex flex-row sm:flex-row md:flex-row lg:flex-col",
+        "bg-[var(--grey)] pt-0 sm:pt-0 md:pt-0 lg:pt-6 h-[64px] sm:h-[64px] md:h-[64px] lg:h-full items-center sm:items-center md:items-center lg:items-stretch overflow-x-scroll sm:overflow-x-scroll md:overflow-x-scroll lg:overflow-x-visible customScrollBar gap-x-4 sm:gap-x-4 md:gap-x-4 lg:gap-x-0  px-6 relative  smooth z-[1] flex flex-row sm:flex-row md:flex-row lg:flex-col",
         {
           "w-full sm:w-full md:w-full lg:w-[260px]": !open,
           "w-full sm:w-full md:w-full lg:w-[72px]": open,
@@ -78,12 +78,13 @@ export default function Aside({}) {
       {navSideContent.map((item) => {
         return (
           <Link
+            prefetch
             href={item.href}
             onClick={() => {
               setActiveNavSide(item.id);
             }}
             className={joiner(
-              "flex flex-row h-[40px]  items-center  hover:greenFilter",
+              " pushable smooth flex flex-row h-[40px]  items-center  hover:greenFilter",
               activeNavSide === item.id ? "greenFilter" : ""
             )}
             key={item.id}

@@ -1,34 +1,74 @@
 "use client";
 
 import { useDrawer } from "@/contexts/CDrawer";
-import React from "react";
-import DrawerCheckbox from "../DrawerCheckbox";
+import React, { useEffect } from "react";
+import DrawerCheckbox from "./DrawerCheckbox";
+import DrawerSearchBar from "./DrawerSearchBar";
+import { EDepartment } from "@/enums/EDepartment";
+import { ESubjectType } from "@/enums/ESubjectType";
 
 export default function DrawerFilter() {
-  const { isOpen, drawerData, openDrawer, closeDrawer } = useDrawer();
+  // const departmentTypeOptions = Object.values(EDepartment);
+  // const subjectTypeOptions = Object.values(ESubjectType);
+
+  const departmentKeys = Object.keys(EDepartment) as Array<
+    keyof typeof EDepartment
+  >;
+
+  const departmentTypeOptions = departmentKeys.map((key) => {
+    return {
+      value: key,
+      label: EDepartment[key],
+    };
+  });
+  const subjectTypeKeys = Object.keys(ESubjectType) as Array<
+    keyof typeof ESubjectType
+  >;
+
+  const subjectTypeOptions = subjectTypeKeys.map((key) => {
+    return {
+      value: key,
+      label: ESubjectType[key],
+    };
+  });
+
+  const {
+    contextUpdateSignal,
+    isOpen,
+    drawerData,
+    openDrawer,
+    closeDrawer,
+    currentFilter,
+  } = useDrawer();
+
+  useEffect(() => {
+    if (Object.keys(currentFilter).length !== 0) {
+    }
+  }, []);
 
   return (
     <>
-      <div className="flex flex-row  border-black border-b border-opacity-10 justify-between items-center h-[64px] px-6">
-        <label className=" flex items-center">
-          <img
-            className="w-4 h-4 me-4"
-            src="/images/Search.svg"
-            alt=""
-          />
-
-          <input
-            type="text"
-            className="grow text-sm"
-            placeholder="Search filter"
-          />
-        </label>
-      </div>
-      <DrawerCheckbox
-        label={"Department"}
-        option
-      ></DrawerCheckbox>
-      <DrawerCheckbox label={"Data Subject"}></DrawerCheckbox>
+      <form>
+        <DrawerSearchBar
+          value={currentFilter.title}
+          name="title"
+        ></DrawerSearchBar>
+        <DrawerCheckbox
+          value={currentFilter.department}
+          name="department"
+          label={"Department"}
+          option={departmentTypeOptions}
+        ></DrawerCheckbox>
+        <DrawerCheckbox
+          value={currentFilter.subjectType}
+          name="subjectType"
+          option={[
+            { value: "null", label: "Not specify" },
+            ...subjectTypeOptions,
+          ]}
+          label={"Data Subject"}
+        ></DrawerCheckbox>
+      </form>
     </>
   );
 }

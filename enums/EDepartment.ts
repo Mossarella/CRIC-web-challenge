@@ -1,6 +1,6 @@
 export enum EDepartment {
   HR = "Human Resources",
-  IT = "IT/IS",
+  IT_IS = "IT/IS",
   AD = "Admission",
   MK = "Marketing",
 }

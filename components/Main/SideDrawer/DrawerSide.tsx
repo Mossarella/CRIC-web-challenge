@@ -2,7 +2,7 @@
 
 import { useDrawer } from "@/contexts/CDrawer";
 import React, { useEffect, useState } from "react";
-import DrawerCheckbox from "./DrawerCheckbox";
+import DrawerCheckbox from "./DrawerFilter/DrawerCheckbox";
 import { EDrawerData } from "@/enums/EDrawerData";
 import DrawerFilter from "./DrawerFilter/DrawerFilter";
 import DrawerNew from "./DrawerNew/DrawerNew";
@@ -10,14 +10,20 @@ import DrawerImport from "./DrawerImport/DrawerImport";
 import DrawerExport from "./DrawerExport/DrawerExport";
 import DrawerFilterButtonSet from "./DrawerFilter/DrawerFilterButtonSet";
 import DrawerNewButtonSet from "./DrawerNew/DrawerNewButtonSet";
-import DrawerDefaultButtonSet from "./DrawerDefaultButtonSet";
 import joiner from "classnames";
+import DrawerExportButtonSet from "./DrawerExport/DrawerExportButtonSet";
+import DrawerImportButtonSet from "./DrawerImport/DrawerImportButtonSet";
+import DrawerEdit from "./DrawerEdit/DrawerEdit";
+import DrawerDelete from "./DrawerDelete/DrawerDelete";
+import DrawerEditButtonSet from "./DrawerEdit/DrawerEditButtonSet";
+import DrawerDeleteButtonSet from "./DrawerDelete/DrawerDeleteButtonSet";
 
 export default function DrawerSide() {
-  const { isOpen, drawerData, closeDrawer } = useDrawer();
+  const { isOpen, drawerData, closeDrawer, errorMessage } = useDrawer();
   const [animate, setAnimate] = useState<boolean>(false);
   const [shouldRender, setShouldRender] = useState<boolean>(isOpen);
   const [currentDrawerData, setCurrentDrawerData] = useState(drawerData);
+  const [errorAnimationKey, setErrorAnimationKey] = useState<number>(0);
 
   const renderContent = () => {
     switch (currentDrawerData.label) {
@@ -29,6 +35,10 @@ export default function DrawerSide() {
         return <DrawerImport />;
       case EDrawerData.EXPORT:
         return <DrawerExport />;
+      case EDrawerData.EDIT:
+        return <DrawerEdit id={currentDrawerData.id} />;
+      case EDrawerData.DELETE:
+        return <DrawerDelete id={currentDrawerData.id} />;
       default:
         return <></>; // Return null or default content if none of the cases match
     }
@@ -40,10 +50,22 @@ export default function DrawerSide() {
         return <DrawerFilterButtonSet />;
       case EDrawerData.NEW:
         return <DrawerNewButtonSet />;
+      case EDrawerData.EXPORT:
+        return <DrawerExportButtonSet />;
+      case EDrawerData.IMPORT:
+        return <DrawerImportButtonSet />;
+      case EDrawerData.EDIT:
+        return <DrawerEditButtonSet id={currentDrawerData.id} />;
+      case EDrawerData.DELETE:
+        return <DrawerDeleteButtonSet id={currentDrawerData.id} />;
       default:
-        return <DrawerDefaultButtonSet />;
+        return <></>;
     }
   };
+
+  useEffect(() => {
+    setErrorAnimationKey((prevKey) => prevKey + 1);
+  }, [errorMessage]);
 
   useEffect(() => {
     if (isOpen) {
@@ -56,7 +78,7 @@ export default function DrawerSide() {
       setAnimate(false);
       setTimeout(() => {
         setShouldRender(false);
-      }, 150);
+      }, 160);
     }
   }, [isOpen, drawerData]);
 
@@ -71,7 +93,7 @@ export default function DrawerSide() {
           closeDrawer();
         }}
         className={joiner(
-          "w-screen h-dvh fixed flex justify-end top-0 left-0 right-0 bottom-0 bg-black bg-opacity-20 z-50 overflow-x-hidden"
+          "w-screen h-dvh fixed flex justify-end top-0 left-0 right-0 bottom-0 bg-black bg-opacity-20 z-50 overflow-hidden"
         )}
       >
         <div
@@ -79,8 +101,10 @@ export default function DrawerSide() {
             e.stopPropagation();
           }}
           className={joiner(
-            "bg-white w-[350px] h-full flex flex-col z-[51] smooth transition-transform duration-300",
-            animate ? "right-0" : "right-[-350px]"
+            "  rounded-t-lg sm:rounded-t-none w-full sm:w-[350px] mt-[64px] sm:mt-0 h-auto sm:h-full  bg-white  flex flex-col z-[51] smooth transition-transform duration-300",
+            animate
+              ? " bottom-0 sm:bottom-auto sm:right-0 "
+              : "bottom-[-100%] sm:bottom-auto sm:right-[-350px]"
           )}
         >
           <div className="flex flex-row justify-between items-center h-[64px] px-6 border-black border-b border-opacity-10">
@@ -96,6 +120,16 @@ export default function DrawerSide() {
             </div>
             {renderButtonSet()}
           </div>
+          {errorMessage && (
+            <div
+              key={errorAnimationKey}
+              className=" flex flex-col  justify-center px-6 py-4 gap-y-4"
+            >
+              <p className="shake text-base text-red-600">
+                {errorMessage.toString()}
+              </p>
+            </div>
+          )}
           {renderContent()}
         </div>
       </div>

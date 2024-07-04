@@ -89,7 +89,12 @@ export default function RootLayout({
           <aside>
             <Aside></Aside>
           </aside>
-          <main className="flex flex-col w-full">{children}</main>
+          <main className="flex flex-col w-full flex-1">
+            <div className=" relative bg-[var(--grey)] flex-1  p-6 flex flex-col gap-y-4 h-full shadow-inner smooth w-full">
+              <Breadcrumb></Breadcrumb>
+              {children}
+            </div>
+          </main>
         </section>
         <footer>
           <Footer></Footer>

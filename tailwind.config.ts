@@ -48,8 +48,8 @@ const config: Config = {
           // "success-content": "#ffffff", // added "success-content"
           // warning: "#e2d562",
           // "warning-content": "#ffffff", // added "warning-content"
-          // error: "#ff6f6f",
-          // "error-content": "#ffffff",
+          error: "#F5222D",
+          "error-content": "#ffffff",
         },
       },
     ],

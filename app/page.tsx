@@ -11,15 +11,21 @@ import DrawerSide from "@/components/Main/SideDrawer/DrawerSide";
 
 export default function Home() {
   return (
-    <DrawerProvider>
-      <div className=" relative bg-[var(--grey)]  p-6 flex flex-col gap-y-4 h-full shadow-inner smooth w-full">
-        <DrawerSide></DrawerSide>
-        <Breadcrumb></Breadcrumb>
-        <MainNav></MainNav>
-        <MainTab></MainTab>
-        <MainTableButton></MainTableButton>
-        <MainTable></MainTable>
+    <>
+      <MainNav
+        title="Home page"
+        main={false}
+      ></MainNav>
+      <div className=" flex-1 flex-col gap-y-2 text-center flex justify-center items-center opacity-50 w-full h-full">
+        <div className="w-20 h-20 relative">
+          <img
+            className=" w-full h-full "
+            src="/images/Home.svg"
+            alt=""
+          />
+        </div>
+        <p>Placeholder for Home page</p>
       </div>
-    </DrawerProvider>
+    </>
   );
 }

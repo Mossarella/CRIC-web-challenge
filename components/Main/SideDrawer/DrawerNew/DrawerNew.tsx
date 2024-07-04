@@ -2,51 +2,65 @@
 
 import { useDrawer } from "@/contexts/CDrawer";
 import React from "react";
-import DrawerCheckbox from "../DrawerCheckbox";
-import DrawerTextArea from "../DrawerTextArea";
-import DrawerInput from "../DrawerInput";
-import DrawerDropdown from "../DrawerDropdown";
+import DrawerCheckbox from "../DrawerFilter/DrawerCheckbox";
+
+import DrawerInput from "./DrawerInput";
+import DrawerTextArea from "./DrawerTextarea";
+import { EDepartment } from "@/enums/EDepartment";
+import { ESubjectType } from "@/enums/ESubjectType";
+import DrawerDropdown from "./DrawerDropdown";
 
 export default function DrawerNew() {
   const { isOpen, drawerData, openDrawer, closeDrawer } = useDrawer();
 
+  const departmentKeys = Object.keys(EDepartment) as Array<
+    keyof typeof EDepartment
+  >;
+
+  const departmentTypeOptions = departmentKeys.map((key) => {
+    return {
+      value: key,
+      label: EDepartment[key],
+    };
+  });
+  const subjectTypeKeys = Object.keys(ESubjectType) as Array<
+    keyof typeof ESubjectType
+  >;
+
+  const subjectTypeOptions = subjectTypeKeys.map((key) => {
+    return {
+      value: key,
+      label: ESubjectType[key],
+    };
+  });
+
   return (
     <>
-      {/* <div className="flex flex-col  justify-center px-6 py-4 gap-y-4"> */}
-      <DrawerInput label="Title"></DrawerInput>
+      <form>
+        <DrawerInput
+          name="title"
+          label="Title"
+        ></DrawerInput>
 
-      <DrawerTextArea label="Description"></DrawerTextArea>
-      <DrawerDropdown
-        defaultChoice="Select Department"
-        option={[]}
-        label="Department"
-      ></DrawerDropdown>
-      <DrawerDropdown
-        defaultChoice="Select Data Subject Type"
-        option={["dog", "cat"]}
-        label="Data Subject Type (Optional)"
-      ></DrawerDropdown>
-      {/* </div> */}
-      {/* <div className="flex flex-row  border-black border-b border-opacity-10 justify-between items-center h-[64px] px-6">
-        <label className=" flex items-center">
-          <img
-            className="w-4 h-4 me-4"
-            src="/images/Search.svg"
-            alt=""
-          />
-
-          <input
-            type="text"
-            className="grow text-sm"
-            placeholder="Search filter"
-          />
-        </label>
-      </div>
-      <DrawerCheckbox
-        label={"Department"}
-        option
-      ></DrawerCheckbox>
-      <DrawerCheckbox label={"Data Subject"}></DrawerCheckbox> */}
+        <DrawerTextArea
+          name="desc"
+          label="Description"
+        ></DrawerTextArea>
+        <DrawerDropdown
+          isNew={true}
+          name="department"
+          defaultChoice="Select Department"
+          option={departmentTypeOptions}
+          label="Department"
+        ></DrawerDropdown>
+        <DrawerDropdown
+          isNew={true}
+          name="subjectType"
+          defaultChoice="Select Data Subject Type"
+          option={[{ value: "", label: "Not specify" }, ...subjectTypeOptions]}
+          label="Data Subject Type (Optional)"
+        ></DrawerDropdown>
+      </form>
     </>
   );
 }

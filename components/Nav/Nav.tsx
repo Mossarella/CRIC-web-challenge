@@ -27,15 +27,13 @@ export default function Nav() {
           src="/images/MainLogo.svg"
           alt=""
         />
-        <p className="me-4 font-semibold text-base">{projectName}</p>
 
-        <div className="dropdown dropdown-end">
-          <div
-            className={joiner(
-              " h-8 cursor-pointer flex justify-center items-center  "
-            )}
-            tabIndex={0}
-          >
+        <div
+          className="dropdown flex flex-row cursor-pointer"
+          tabIndex={0}
+        >
+          <p className="me-4 font-semibold text-base">{projectName}</p>
+          <div className={joiner(" h-8  flex justify-center items-center  ")}>
             <img
               src="/images/Arrow.svg"
               alt=""
@@ -44,19 +42,18 @@ export default function Nav() {
 
           <ul
             tabIndex={0}
-            className="dropdown-content menu bg-[var(--white)] rounded-lg z-[53] w-52 p-2 shadow"
+            className="dropdown-content menu bg-[var(--white)] mt-[40px] rounded-lg z-[53] w-64 p-2 shadow"
           >
             {schoolName.map((item) => {
               return (
                 <li key={item.name}>
-                  <Link
+                  <p
                     onClick={(e) => {
                       setProjectName((e.target as HTMLAnchorElement).innerText);
                     }}
-                    href="/"
                   >
                     {item.name}
-                  </Link>
+                  </p>
                 </li>
               );
             })}
