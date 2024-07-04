@@ -29,10 +29,10 @@ export default function Nav() {
         />
 
         <div
-          className="dropdown flex flex-row cursor-pointer"
+          className="dropdown flex flex-row cursor-pointer   items-center h-full"
           tabIndex={0}
         >
-          <p className="me-4 font-semibold text-base">{projectName}</p>
+          <p className="me-4 font-semibold text-base ">{projectName}</p>
           <div className={joiner(" h-8  flex justify-center items-center  ")}>
             <img
               src="/images/Arrow.svg"
@@ -42,12 +42,13 @@ export default function Nav() {
 
           <ul
             tabIndex={0}
-            className="dropdown-content menu bg-[var(--white)] mt-[40px] rounded-lg z-[53] w-64 p-2 shadow"
+            className="dropdown-content menu bg-[var(--white)] mt-[180px] rounded-lg z-[53] w-64 p-2 shadow"
           >
             {schoolName.map((item) => {
               return (
                 <li key={item.name}>
                   <p
+                    className=""
                     onClick={(e) => {
                       setProjectName((e.target as HTMLAnchorElement).innerText);
                     }}

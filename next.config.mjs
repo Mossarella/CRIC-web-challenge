@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: false,
   ignoreBuildErrors: true,
+  output: "standalone",
 };
 
 export default nextConfig;
