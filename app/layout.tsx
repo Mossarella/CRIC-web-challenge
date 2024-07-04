@@ -7,6 +7,8 @@ import Aside from "@/components/Aside/Aside";
 import Breadcrumb from "@/components/Main/Breadcrumb/Breadcrumb";
 import joiner from "classnames";
 import { inter, lato } from "@/Fonts/FontProperty";
+import { Suspense } from "react";
+import LoadingPage from "./loading";
 
 export const metadata: Metadata = {
   title: "Web dev challenge",
@@ -91,8 +93,10 @@ export default function RootLayout({
           </aside>
           <main className="flex flex-col w-full flex-1">
             <div className=" relative bg-[var(--grey)] flex-1  p-6 flex flex-col gap-y-4 h-full shadow-inner smooth w-full">
-              <Breadcrumb></Breadcrumb>
-              {children}
+              <Suspense fallback={<LoadingPage />}>
+                <Breadcrumb></Breadcrumb>
+                {children}
+              </Suspense>
             </div>
           </main>
         </section>

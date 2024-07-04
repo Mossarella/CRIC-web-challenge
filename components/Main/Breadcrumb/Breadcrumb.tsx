@@ -1,8 +1,9 @@
 "use client";
 
+import LoadingPage from "@/app/loading";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 export default function Breadcrumb() {
   const navSideContent = {
@@ -29,7 +30,7 @@ export default function Breadcrumb() {
         : segment.replace(/-/g, " ");
 
     if (navSideContent.hasOwnProperty(segment)) {
-      label = navSideContent[segment];
+      label = navSideContent[segment as keyof typeof navSideContent];
     }
 
     return (
@@ -52,19 +53,21 @@ export default function Breadcrumb() {
   });
 
   return (
-    <div className="breadcrumbs text-sm p-0 flex items-center">
-      <ul className="flex space-x-2">
-        <li className="h-full">
-          <Link href="/">
-            <img
-              className="min-w-[24px] min-h-[24px]"
-              src="/images/Home.svg"
-              alt="Home"
-            />
-          </Link>
-        </li>
-        {breadcrumbs}
-      </ul>
-    </div>
+    <Suspense fallback={<LoadingPage />}>
+      <div className="breadcrumbs text-sm p-0 flex items-center">
+        <ul className="flex space-x-2">
+          <li className="h-full">
+            <Link href="/">
+              <img
+                className="min-w-[24px] min-h-[24px]"
+                src="/images/Home.svg"
+                alt="Home"
+              />
+            </Link>
+          </li>
+          {breadcrumbs}
+        </ul>
+      </div>
+    </Suspense>
   );
 }
