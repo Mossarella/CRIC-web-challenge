@@ -61,7 +61,7 @@ If you don't have Docker installed, you can still view the UI by running in the 
 
 ---
 
-![mock](/web-challenge/public/images/mock.png)
+![mock](/public/images/mock.png)
 
 \
 _Created by Mossarelladev, 2024_.\
