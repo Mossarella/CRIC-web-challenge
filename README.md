@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Web developer challenge : Full stack position
 
-## Getting Started
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This project was rapidly prototype using Next.js framework for fullstack functionality, Using Tailwind and DaisyUI for quick styling and responsiveness. with Prisma as the ORM and PostgreSQL for data management. Containerized using Docker for ease of deployment and scalability.
 
-First, run the development server:
+#### Basic requirement checklist
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- ✔️ A complete clone of Figma design. Built with the most robust css foundation. Designed to be scalable for future enhancement in both code and styling wise.
+- ✔️ Complete CRUD operation, Not just Adding a data. Now you can also Add, Edit, Delete Filter and even Sorting. Data is sorted by chronological order by default.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### Non functional requirement checklist
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🎯 Fully responsive for various device sizes. Starting at 320px (the lowest screen size to consider).
+- 🎯 Record persistence. With the database integration, records will be persist indefinitely.
+- 🎯 Partial text search to ensure the fastest possible data retrieval.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### Additional enhancement to touch up the application
 
-## Learn More
+- ⭐ A collapsable sidebar for bigger screen space.
+- ⭐ Now able to redirect to all routes displayed in the UI.
+- ⭐ Pagination for handling large data sets, if the record is exceed certain limits.
+- ⭐ Various quality-of-life improvements, such as little meaningful animations, multiple button states, and a filter button indicating the current filtering state.
+- ⭐ Error handling and error display for unexpected issues.
+- ⭐ Form validation to ensure the correct data management.
+- ⭐ Catch all 404 page for unmatched routes.
 
-To learn more about Next.js, take a look at the following resources:
+####
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Prerequisite
 
-## Deploy on Vercel
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To ensure that an application will be working in fully ideal state.
+Before you begin, Please prepare the following tools installed on your system
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Docker
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Setup
+
+&nbsp;1. Clone the repository\
+&nbsp;2. Change directory to root folder\
+&nbsp;3. Run this command
+
+    docker-compose up -d
+
+This command will start the following services:
+
+- next-app (Next.js application running on port 3000)
+- postgres (PostgreSQL database running on port 5432)
+- pgadmin (pgAdmin running on port 5050)
+
+And finally, Open your browser and navigate to [http://localhost:3000](http://localhost:3000) to access the Next.js application.
+
+If you don't have Docker installed, you can still view the UI by running in the root directory
+
+    npm run dev
+
+\
+**_In case of something not working as expected, Feel free to contact me and please report me the issue_**
+
+####
+
+---
+
+![mock](/images/mock.png)
+
+\
+\
+\
+\
+_Created by Mossarelladev, 2024_.\
+Thanks for sticking to here ⭐
