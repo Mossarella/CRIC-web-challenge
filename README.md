@@ -39,7 +39,7 @@ Before you begin, Please prepare the following tools installed on your system
 &nbsp;1. Clone the repository\
 &nbsp;2. Change directory to root folder\
 &nbsp;3. Make sure you have open the docker desktop application\
-&nbsp;3. Run this command
+&nbsp;4. Run this command
 
     docker-compose up -d
 
