@@ -67,13 +67,13 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
-
 COPY prisma ./prisma/
-
 RUN npm install
-
 COPY . .
+
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
 
 EXPOSE 3000
 
-CMD npm run dev
+ENTRYPOINT ["/app/entrypoint.sh"]
