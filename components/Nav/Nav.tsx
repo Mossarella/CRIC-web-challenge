@@ -23,7 +23,7 @@ export default function Nav() {
     <div className="navbar h-[64px] bg-[var(--white)] px-6 justify-between">
       <div className="navbar-start w-auto">
         <img
-          className=" h-[36px] w-[36px] me-4"
+          className=" h-[36px] w-[36px] me-4 hidden sm:flex md:flex"
           src="/images/MainLogo.svg"
           alt=""
         />

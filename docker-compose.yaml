@@ -8,6 +8,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - my_network
   pgadmin:
     image: dpage/pgadmin4
     env_file:
@@ -16,6 +18,8 @@ services:
       - "5050:80"
     depends_on:
       - postgres
+    networks:
+      - my_network
   next-app:
     image: mossarelladev/web-challenge
     container_name: next-app
@@ -23,6 +27,8 @@ services:
       - .env.example
     ports:
       - "3000:3000"
+    networks:
+      - my_network
 
 volumes:
   postgres-data:

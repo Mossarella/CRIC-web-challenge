@@ -46,7 +46,7 @@ export default function DrawerDelete({ id }: { id: number }) {
 
   const FetchData = async () => {
     try {
-      const response = await axios.get(`/api/mappingdata/${id}`);
+      const response = await axios.get(`/api/mappingData/${id}`);
 
       setData(response.data);
     } catch (error) {

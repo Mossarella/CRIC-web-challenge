@@ -20,7 +20,7 @@ export default function DrawerEditButtonSet({ id }: { id: number }) {
     e.preventDefault();
 
     try {
-      await axios.put(`/api/mappingdata/${id}`, {
+      await axios.put(`/api/mappingData/${id}`, {
         title: formData.title,
         department: formData.department,
         desc: formData.desc,

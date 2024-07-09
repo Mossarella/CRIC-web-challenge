@@ -19,7 +19,7 @@ export default function DrawerDeleteButtonSet({ id }: { id: number }) {
     e.preventDefault();
 
     try {
-      await axios.delete(`/api/mappingdata/${id}`);
+      await axios.delete(`/api/mappingData/${id}`);
 
       await closeDrawer();
       await triggerUpdate();

@@ -19,7 +19,7 @@ export default function DrawerNewButtonSet() {
     e.preventDefault();
 
     try {
-      await axios.post("/api/mappingdata", {
+      await axios.post("/api/mappingData", {
         title: formData.title,
         department: formData.department,
         desc: formData.desc,

@@ -53,7 +53,7 @@ export default function DrawerEdit({ id }: { id: number }) {
 
   const FetchData = async () => {
     try {
-      const response = await axios.get(`/api/mappingdata/${id}`);
+      const response = await axios.get(`/api/mappingData/${id}`);
 
       // await Object.keys(response.data).forEach((key) => {
       //   updateFormData((prevData: any) => ({

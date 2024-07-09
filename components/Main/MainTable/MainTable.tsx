@@ -37,7 +37,7 @@ export default function MainTable() {
 
   const FetchData = async (filters: any) => {
     try {
-      const response = await axios.get("/api/mappingdata", {
+      const response = await axios.get("/api/mappingData", {
         params: filters,
         paramsSerializer: (params) => {
           return qs.stringify(params, { arrayFormat: "repeat" });
