@@ -3,7 +3,7 @@ services:
   postgres:
     image: postgres:latest
     env_file:
-      - .env.example
+      - .env
     ports:
       - "5432:5432"
     volumes:
@@ -13,7 +13,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     env_file:
-      - .env.example
+      - .env
     ports:
       - "5050:80"
     depends_on:
@@ -21,14 +21,21 @@ services:
     networks:
       - my_network
   next-app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: next-app
     env_file:
-      - .env.example
+      - .env
     ports:
       - "3000:3000"
     networks:
       - my_network
+    depends_on:
+      - postgres
+    volumes:
+      - .:/app
+      - /app/node_modules
 
 volumes:
   postgres-data:
@@ -36,5 +43,4 @@ volumes:
     external: true
 networks:
   my_network:
-    name: my_network
-    external: true
+    driver: bridge
